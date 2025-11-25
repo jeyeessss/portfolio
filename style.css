@@ -407,7 +407,7 @@ ul.skills li:hover span:after,
 
 /* Only keeping the skills that remain in index.html */
 ul.skills li.sk-dis { --per: 90; }
-ul.skills li.sk-pro { --per: 60; }
+ul.skills li.sk-pro { --per: 50; }
 ul.skills li.sk-res { --per: 90; }
 
 
