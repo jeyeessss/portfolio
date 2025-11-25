@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body class="light">
+    <nav>
+        <div class="nav-left">
+            <h1>My Portfolio</h1>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <input type="checkbox" id="theme-toggle" class="visually-hidden">
+            <label class="theme-switch" for="theme-toggle">
+                <div class="dot"></div>
+            </label>
+            </div>
+    </nav>
+
+    <section id="home" class="section">
+        <h2>Welcome to My Portfolio</h2>
+        <p>Hi! I am John Seigfred Alvarez, a student of Caraga State University studying in Bachelor of Science in Information Technology</p>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Me</h2>
+        <p id="about-text" contenteditable="false">
+            Hello! I’m a student with a real passion for creating websites that not only look great but also feel smooth and easy to use. I love discovering new tools, learning new skills, and growing a little more every day. I’m especially good with design, using Canva and Photoshop, and I also enjoy creating video graphics through CapCut.
+        </p>
+        <button id="edit-btn">Edit</button>
+
+        <div class="content">
+            <div class="profile-skills">
+                <div>
+                    <input type="checkbox" id="sk1">
+                    <label for="sk1"></label>
+                    <ul class="skills skills1">
+                        <li class="sk-dis"><span>Design</span></li>
+                        <li class="sk-pro"><span>Programing</span></li>
+                        <li class="more">
+                            <input type="checkbox" id="more-con"><label for="more-con"></label>
+                            <div><span>CANVA</span><span>PHOTOSHOP</span><span>CAPCUT</span><span>HTML</span><span>CSS</span><span>C</span><span>JavaScript</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </section>
+
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Email: Johnseigfredalvarez@gmail.com</p>
+        <p>Phone: 09489209873</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #002c59;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Make nav-right flexible to span the center and push the button right */
+.nav-right {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Takes up available middle space */
+    justify-content: flex-end; /* Pushes the button to the right */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Increased spacing */
+    /* Centers the ul in the available space in nav-right */
+    margin: 0 auto; 
+    margin-right: 2rem; /* Ensures space between last link and the button */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem; /* Increased font size */
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+button {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* --- TOGGLE SWITCH STYLES (Neumorphic) --- */
+
+/* Utility class to hide the actual checkbox input */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.theme-switch {
+    position: relative;
+    /* Longer and bigger switch track */
+    width: 2.5rem; /* Switch track width (Longer) */
+    height: 1.2rem; /* Switch track height */
+    
+    border-radius: 1rem;
+    /* Inner shadow for the track (Neumorphism effect) */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    /* NEW: Light track color for Light Mode */
+    background-color: #eee; 
+    transition: all 0.3s ease;
+}
+
+.theme-switch .dot {
+    position: absolute;
+    /* Dot size */
+    width: 1.0rem; 
+    height: 1.0rem;
+    left: 0.1rem; /* Gap size */
+    
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    /* Outer shadow for the dot (Neumorphism effect) */
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), 
+                -3px -3px 6px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    /* Black/Dark Grey dot for Light Mode */
+    background-color: #333; 
+}
+
+/* Checked state (Toggle ON / Dark Mode) */
+#theme-toggle:checked + .theme-switch {
+    /* NEW: Dark track color for Dark Mode */
+    background-color: #1a1a1a; 
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), 
+                inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+}
+
+#theme-toggle:checked + .theme-switch .dot {
+    /* Move dot to the right: calc(100% - dot_size - gap) -> calc(100% - 1.1rem) */
+    left: calc(100% - 1.1rem); 
+    /* White dot for Dark Mode */
+    background-color: #fff; 
+}
+
+
+/* --- Section Styling --- */
+.section {
+    padding: 4rem 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+.section h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #002c59; /* Set to dark blue for Light Mode (default) */
+}
+
+/* Paragraph font size */
+.section p {
+    font-size: 1.1rem; 
+}
+
+/* About Me Button */
+#edit-btn {
+    margin-top: 1rem;
+    background-color: #002c59;
+    color: white;
+}
+
+#edit-btn:hover {
+    background-color: #ffcc00;
+    color: black;
+}
+
+/* Light Theme */
+body.light {
+    background-color: #f5f5f5;
+    color: #333; /* Text color to dark grey for visibility */
+}
+
+body.light nav {
+    background-color: #002c59;
+}
+
+/* Dark Theme */
+body.dark {
+    background-color: #121212;
+    color: #eee;
+}
+
+body.dark nav {
+    background-color: #1a1a1a;
+}
+
+body.dark a {
+    color: #eee;
+}
+
+body.dark a:hover {
+    color: #ffcc00;
+}
+
+/* Dark Mode Specific Headings */
+body.dark .section h2 {
+    color: #ffcc00; /* Set to yellow only in Dark Mode */
+}
+
+/* --- SKILL METER STYLES (INTEGRATED) --- */
+
+:root {
+    --c1: #2187e7; /* Primary Skill Color */
+    --b2: #222; /* Skill Background/Shadow Color */
+    --b3: #333;
+    --w1: #fff; /* Border/Highlight Color */
+    --w2: #eee;
+    --t1: all 0.5s ease 0s;
+}
+
+/* Skill meter specific reset */
+.profile-skills *:before,
+.profile-skills *:after {
+    box-sizing: border-box;
+    content: "";
+}
+
+.content {
+    width: 100%; 
+    background: transparent;
+    padding-top: 2rem;
+}
+
+.profile-skills {
+    display: block; /* Ensures the single column takes full width cleanly */
+    position: relative;
+    width: 100%;
+    margin-top: 80px; /* Space for the floating labels */
+}
+
+.profile-skills > div {
+    width: 100%; /* Makes the remaining column full width */
+    margin-right: 0; 
+    border-radius: 2px;
+    position: relative;
+}
+
+/* Adjust skill meter colors for the light/dark themes */
+body.light .profile-skills > div {
+    /* Ensure skills background looks good in light mode */
+    --b2: #3a3a3a;
+}
+
+body.dark .profile-skills > div {
+    /* Ensure skills background looks good in dark mode */
+    --b2: #1a1a1a;
+    --w1: #333; /* Darker border for dark mode */
+}
+
+ul.skills {
+    width: 100%;
+    position: relative;
+    padding: 25px 35px;
+    /* Use body's background for transparency */
+    background: linear-gradient(0deg, var(--c1) 0 10px, var(--b2) 0 calc(100% - 10px), var(--c1) 0 100%);
+}
+
+ul.skills:before {
+    content: "Skills";
+    text-transform: uppercase;
+    position: absolute;
+    top: -65px; 
+    height: 40px; 
+    color: #ffcc00; /* Changed to yellow */
+    background-color: var(--b2);
+    width: 100%;
+    left: 0;
+    /* CENTERING AND INCREASING FONT SIZE */
+    padding: 0; 
+    text-align: center; 
+    font-weight: 600;
+    z-index: 1;
+    transition: var(--t1);
+    font-size: 36px; 
+    line-height: 40px; 
+    transform: scaleY(1.4); 
+}
+
+ul.skills:after {
+    content: "";
+    position: absolute;
+    border: 40px solid #fff0;
+    border-top-color: var(--b2);
+    top: -30px;
+    left: 10px;
+    z-index: 0;
+    transition: var(--t1);
+    filter: drop-shadow(0 11px 0.1px var(--w1));
+}
+
+ul.skills:hover:before,
+label:hover + ul.skills:before,
+input:checked + label + ul.skills:before {
+    transition: var(--t1);
+    background-color: #2187e7;
+    background-position: 0 50%;
+}
+ul.skills:hover:after,
+label:hover + ul.skills:after,
+input:checked + label + ul.skills:after {
+    top: -20px;
+    transition: var(--t1);
+    border-top-color: #2187e7;
+}
+
+ul.skills li {
+    --per: 50;
+    --dur: calc(calc(var(--per) / 100) * 1.5s);
+    margin: 0 0 5px 0;
+    list-style: none;
+    padding: 20px 0;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: var(--w2);
+}
+
+ul.skills li:before {
+    content: "";
+    position: absolute;
+    background: #1c1c1c;
+    height: 16px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    border-radius: 2px;
+    border: 1px solid #111;
+    border-color: #111 #323232 #323232 #111;
+    --track: #2292dd40;
+    background: linear-gradient(
+        90deg,
+        var(--track) calc(calc(var(--per) * 1%) + 4px),
+        #1c1c1c calc(calc(var(--per) * 1%) + 4px)
+    );
+}
+
+ul.skills li:after {
+    content: "";
+    height: 11px;
+    margin: 0 0 2px 0;
+    background: #2187e7;
+    position: absolute;
+    box-shadow: 0px 0px 10px 1px #00c6ff66;
+    left: 3px;
+    width: 0%;
+    bottom: 0;
+    transition: all var(--dur) ease 0s;
+    animation: start 1s ease 0s 2 alternate;
+}
+
+ul.skills li:hover {
+    filter: brightness(1.5);
+    transition: var(--t1);
+}
+
+ul.skills:hover li:after,
+label:hover + ul.skills li:after,
+input:checked + label + ul.skills li:after {
+    width: calc(calc(var(--per) * 1%) - 2px);
+}
+
+@keyframes start {
+    100% {
+        width: calc(calc(var(--per) * 1%) - 2px);
+    }
+}
+
+ul.skills li span {
+    font-weight: 500;
+}
+
+ul.skills li span:before {
+    position: absolute;
+    right: -25px;
+    top: 43px;
+    transition: var(--t1);
+    content: "";
+    opacity: 1;
+    border: 7px solid #fff0;
+}
+
+ul.skills li:hover span:before,
+.profile-skills input:checked + label + ul.skills li span:before {
+    transition: var(--t1);
+    right: calc(calc(calc(100 - var(--per)) * 1%) - 12px);
+    opacity: 1;
+    border-right-color: #2187e7;
+}
+
+ul.skills li span:after {
+    position: absolute;
+    right: -40px;
+    top: 38px;
+    transition: var(--t1);
+    counter-reset: percent var(--per);
+    content: counter(percent);
+    color: var(--b2);
+    opacity: 1 !important;
+    padding: 4px 6px;
+    border-radius: 1px;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+ul.skills li:hover span:after,
+.profile-skills input:checked + label + ul.skills li span:after {
+    transition: var(--t1);
+    right: calc(calc(calc(100 - var(--per)) * 1%) - 40px);
+    opacity: 1;
+    background: var(--c1);
+}
+
+/*********************/
+/*** SKILLS VALUES ***/
+/*********************/
+
+/* Only keeping the skills that remain in index.html */
+ul.skills li.sk-dis { --per: 90; }
+ul.skills li.sk-pro { --per: 60; }
+ul.skills li.sk-res { --per: 90; }
+
+
+/*********************/
+/***** TOP LABELS ****/
+/*********************/
+
+.profile-skills input {
+    display: none;
+}
+
+.profile-skills label {
+    background: var(--w1);
+    position: absolute;
+    top: -61px;
+    left: 22px;
+    z-index: 2;
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: var(--t1);
+    box-shadow: 0 0 0 0 var(--w1);
+}
+
+.profile-skills label:before {
+    content: "";
+    background: #fff0;
+    position: absolute;
+    top: 12px;
+    left: 11px;
+    z-index: 2;
+    border: 9px solid var(--b2);
+    border-top-width: 0;
+    border-right-width: 0;
+    transform: rotate(-45deg);
+    width: 33px;
+    height: 22px;
+    border-radius: 2px;
+    transition: var(--t1);
+}
+
+.profile-skills label:hover {
+    box-shadow: 0 0 0 3px var(--w1);
+    transition: var(--t1);
+}
+
+.profile-skills label:hover:before {
+    border-color: var(--b2);
+    transition: var(--t1);
+}
+
+.profile-skills input:checked + label {
+    box-shadow: 0 0 0 6px var(--w1);
+    transition: var(--t1);
+}
+
+.profile-skills input:checked + label:before {
+    border-color: #2187e7;
+}
+
+label[for="sk1"]:before {
+    border-color: cornflowerblue;
+}
+
+/*********************/
+/*** BOTTOM LABELS ***/
+/*********************/
+
+ul.skills li.more {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+ul.skills li.more:before,
+ul.skills li.more:after {
+    display: none;
+}
+
+ul.skills li.more:hover {
+    filter: none !important;
+}
+
+ul.skills li.more div {
+    max-height: 0;
+    transition: var(--t1);
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+ul.skills li.more input:checked ~ div {
+    max-height: 150px;
+    transition: var(--t1);
+    padding: 20px 0 0;
+}
+
+ul.skills li.more div span:before,
+ul.skills li.more div span:after {
+    display: none;
+}
+
+ul.skills li.more label {
+    background: linear-gradient(163deg, var(--b2) 50%, var(--w1) 50%);
+    right: 0;
+    left: inherit;
+    top: inherit;
+    bottom: -70px;
+    color: var(--b2);
+    background-size: 100% 300%;
+    background-position-y: 100%;
+    transition: var(--t1);
+    width: 55px;
+    height: 55px;
+    right: -50px;
+}
+
+ul.skills li.more label:before {
+    border: 0;
+    height: 100%;
+    width: 100%;
+    transform: rotate(0deg);
+    content: "\271A";
+    font-size: 45px;
+    line-height: 55px;
+    left: 0;
+    top: 0;
+    text-align: center;
+    color: var(--c1);
+}
+
+ul.skills li.more label:hover {
+    background-position-y: 0%;
+    color: var(--w1) !important;
+    transition: var(--t1);
+    box-shadow: 0 0 0 10px var(--w1);
+}
+
+ul.skills li.more span {
+    background: #1c1c1c;
+    border-radius: 1px;
+    margin: 10px 10px 1px 1px;
+    padding: 4px 8px;
+    display: inline-block;
+    border: 1px solid #111;
+    border-color: #111 #323232 #323232 #111;
+}
+
+ul.skills li.more span:hover {
+    color: var(--w0);
+    background: var(--c1);
+    box-shadow: 0px 0px 5px 1px var(--c1);
+    border-color: #fff2;
+}
+
+ul.skills li.more input:checked + label {
+    box-shadow: 0 0 0 9px var(--w1);
+    background-position-y: 0%;
+    color: var(--w0);
+    bottom: -70px;
+}
+
+ul.skills li.more input:checked + label:hover {
+    box-shadow: 0 0 0 0 var(--w1);
+    background-position-y: 100%;
+    color: var(--b2) !important;
+}
+
+/*********************/
+/*** MEDIA QUERIES ***/
+/*********************/
+
+/* All multi-column media queries were removed for a pure single-column layout */
+@media only screen and (max-width: 768px) {
+    .profile-skills {
+        margin-top: 100px;
+    }
+}
